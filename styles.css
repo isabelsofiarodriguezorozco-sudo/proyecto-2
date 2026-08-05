@@ -1,0 +1,724 @@
+
+/* ==========================================================================
+   1. VARIABLES GLOBALES Y TEMAS
+   ========================================================================== */
+:root {
+  /* Paleta de Colores Neón / Cyberpunk */
+  --bg-dark: #0b0d17;
+  --bg-card: rgba(22, 27, 46, 0.7);
+  --bg-modal: #121629;
+  --text-main: #f0f3fe;
+  --text-muted: #8e9bb0;
+  
+  /* Colores de Acento (Identidades de las Tarjetas) */
+  --cyan-accent: #00f2fe;
+  --purple-accent: #b142fe;
+  --emerald-accent: #00ffaa;
+  --amber-accent: #ffb703;
+  --red-alert: #ff4757;
+
+  /* Fuertes y Sombras de Neón */
+  --glow-cyan: 0 0 20px rgba(0, 242, 254, 0.35);
+  --glow-purple: 0 0 20px rgba(177, 66, 254, 0.35);
+  
+  /* Tipografía */
+  --font-heading: 'Orbitron', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  
+  /* Transiciones Estándar */
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* ==========================================================================
+   2. REINICIO GENERAL Y BASE
+   ========================================================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-body);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Efectos Ambientales de Fondo (Focos de Luz Glowing) */
+.bg-glow {
+  position: fixed;
+  border-radius: 50%;
+  filter: blur(120px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.spot-1 {
+  width: 400px;
+  height: 400px;
+  background: rgba(0, 242, 254, 0.12);
+  top: -100px;
+  left: -100px;
+}
+
+.spot-2 {
+  width: 500px;
+  height: 500px;
+  background: rgba(177, 66, 254, 0.12);
+  bottom: 10%;
+  right: -150px;
+}
+
+.spot-3 {
+  width: 350px;
+  height: 350px;
+  background: rgba(0, 255, 170, 0.08);
+  top: 40%;
+  left: 30%;
+}
+
+/* Clases Útiles */
+.hidden {
+  display: none !important;
+}
+
+/* ==========================================================================
+   3. BARRA DE NAVEGACIÓN (NAVBAR)
+   ========================================================================== */
+.navbar-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(11, 13, 23, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.navbar {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo-icon {
+  font-size: 1.5rem;
+  color: var(--cyan-accent);
+  text-shadow: var(--glow-cyan);
+}
+
+.logo-text {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.logo-text .highlight {
+  color: var(--cyan-accent);
+}
+
+/* Enlaces del Menú */
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--cyan-accent);
+  text-shadow: var(--glow-cyan);
+}
+
+/* Acciones de Usuario en Navbar */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.status-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--emerald-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--emerald-accent);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+/* Botón Iniciar Sesión en Navbar */
+.btn-login-trigger {
+  background: linear-gradient(135deg, var(--cyan-accent), var(--purple-accent));
+  color: #fff;
+  border: none;
+  padding: 0.55rem 1.2rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition);
+}
+
+.btn-login-trigger:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--glow-purple);
+}
+
+/* Perfil de Usuario Logueado */
+.user-profile-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(177, 66, 254, 0.15);
+  border: 1px solid var(--purple-accent);
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.btn-logout-icon {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  margin-left: 0.4rem;
+  transition: var(--transition);
+}
+
+.btn-logout-icon:hover {
+  color: var(--red-alert);
+}
+
+/* ==========================================================================
+   4. SECCIÓN HERO (BIENVENIDA)
+   ========================================================================== */
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+.hero-section {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(0, 242, 254, 0.1);
+  color: var(--cyan-accent);
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  margin-bottom: 1.5rem;
+}
+
+.hero-title {
+  font-family: var(--font-heading);
+  font-size: 2.8rem;
+  font-weight: 900;
+  margin-bottom: 1rem;
+  background: linear-gradient(180deg, #ffffff 0%, var(--text-muted) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin: 0 auto 2.5rem auto;
+}
+
+/* Barra de Estadísticas */
+.stats-bar {
+  display: inline-flex;
+  align-items: center;
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  padding: 1rem 2rem;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 2rem;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-number {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--cyan-accent);
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.stat-divider {
+  width: 1px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================================================
+   5. CATÁLOGOS Y GRILLA DE TARJETAS (JUEGOS Y EQUIPO)
+   ========================================================================== */
+.games-section {
+  margin-bottom: 4rem;
+}
+
+.section-header {
+  margin-bottom: 2rem;
+}
+
+.section-header h2 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+.section-header p {
+  color: var(--text-muted);
+}
+
+/* Grilla Responsiva */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.8rem;
+}
+
+/* Estilo de Tarjetas con Glassmorphism */
+.game-card {
+  position: relative;
+  background: var(--bg-card);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 1.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition);
+  overflow: hidden;
+}
+
+.game-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Temas de Color por Tarjeta */
+.card-cyan:hover { box-shadow: var(--glow-cyan); }
+.card-purple:hover { box-shadow: var(--glow-purple); }
+.card-emerald:hover { box-shadow: 0 0 20px rgba(0, 255, 170, 0.35); }
+.card-amber:hover { box-shadow: 0 0 20px rgba(255, 183, 3, 0.35); }
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+}
+
+.card-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--cyan-accent);
+}
+
+.difficulty-tag {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.card-icon-wrapper {
+  font-size: 2.2rem;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  margin-bottom: 0.75rem;
+}
+
+.card-description {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+  flex-grow: 1;
+}
+
+.tags-list {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+}
+
+/* Botones dentro de las Tarjetas */
+.btn-card {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-main);
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition);
+}
+
+.card-cyan .btn-card {
+  background: var(--cyan-accent);
+  color: #000;
+}
+
+.btn-card:hover {
+  filter: brightness(1.15);
+}
+
+/* ==========================================================================
+   6. VENTANAS MODALES (JUEGO Y LOGIN)
+   ========================================================================== */
+.game-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 7, 15, 0.85);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: var(--transition);
+}
+
+.game-modal.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-content {
+  background: var(--bg-modal);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 24px;
+  padding: 2.5rem;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  transform: translateY(20px);
+  transition: var(--transition);
+}
+
+.game-modal.active .modal-content {
+  transform: translateY(0);
+}
+
+.close-modal {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.close-modal:hover {
+  color: var(--red-alert);
+}
+
+/* Modal del Juego (Guess The Word) */
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.hint-box {
+  background: rgba(0, 242, 254, 0.08);
+  border: 1px solid rgba(0, 242, 254, 0.2);
+  padding: 0.8rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  margin-bottom: 1.5rem;
+}
+
+.word-display {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.letter-box {
+  width: 40px;
+  height: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.letter-box.revealed {
+  border-color: var(--cyan-accent);
+  background: rgba(0, 242, 254, 0.15);
+  color: var(--cyan-accent);
+}
+
+.guess-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.guess-form input {
+  flex-grow: 1;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.8rem;
+  border-radius: 8px;
+  color: var(--text-main);
+  text-align: center;
+}
+
+.btn-submit, .btn-restart {
+  background: var(--cyan-accent);
+  color: #000;
+  border: none;
+  padding: 0.8rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn-restart {
+  margin-top: 1rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   7. ESTILOS ESPECÍFICOS PARA EL MODAL DE AUTENTICACIÓN (LOGIN Y REGISTRO)
+   ========================================================================== */
+.auth-tabs {
+  display: flex;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.3rem;
+  border-radius: 12px;
+  margin-bottom: 1.8rem;
+}
+
+.auth-tab-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  padding: 0.6rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.auth-tab-btn.active {
+  background: var(--purple-accent);
+  color: #fff;
+  box-shadow: var(--glow-purple);
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.auth-header h3 {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+}
+
+.auth-header p {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  text-align: left;
+}
+
+.input-group label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.input-group input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  color: var(--text-main);
+  outline: none;
+  transition: var(--transition);
+}
+
+.input-group input:focus {
+  border-color: var(--purple-accent);
+  box-shadow: 0 0 10px rgba(177, 66, 254, 0.2);
+}
+
+.btn-auth-submit {
+  background: linear-gradient(135deg, var(--purple-accent), var(--cyan-accent));
+  color: #fff;
+  margin-top: 0.5rem;
+}
+
+/* Mensajes de Estado */
+.game-message {
+  font-size: 0.85rem;
+  text-align: center;
+  margin-top: 0.5rem;
+  min-height: 1.2rem;
+}
+
+.game-message.error { color: var(--red-alert); }
+.game-message.success { color: var(--emerald-accent); }
+.game-message.warning { color: var(--amber-accent); }
+
+/* ==========================================================================
+   8. PIE DE PÁGINA (FOOTER)
+   ========================================================================== */
+.footer {
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   9. ADAPTABILIDAD RESPONSIVA (MÓVILES Y TABLETS)
+   ========================================================================== */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .stats-bar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .stat-divider {
+    width: 80%;
+    height: 1px;
+  }
+}

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Configuración básica de codificación y diseño responsivo -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Arcade - ArcadeHub</title>
+  
+  <!-- Enlace a la hoja de estilos CSS general -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Librería de íconos Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Tipografías de Google Fonts (Orbitron para estilo retro/gamer, Plus Jakarta Sans para texto) -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- EFECTOS DE LUZ AMBIENTAL DE FONDO -->
+  <div class="bg-glow spot-1"></div>
+  <div class="bg-glow spot-2"></div>
+  <div class="bg-glow spot-3"></div>
+
+  <!-- ========================================== -->
+  <!-- BARRA DE NAVEGACIÓN (NAVBAR)               -->
+  <!-- ========================================== -->
+  <header class="navbar-wrapper">
+    <nav class="navbar">
+      <!-- Isotipo y logotipo de la plataforma -->
+      <div class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-gamepad"></i></div>
+        <span class="logo-text">ARCADE<span class="highlight">HUB</span></span>
+      </div>
+
+      <!-- Enlaces de navegación con desplazamiento en la misma página -->
+      <ul class="nav-links">
+        <li><a href="#inicio" class="nav-link active"><i class="fa-solid fa-house"></i> Inicio</a></li>
+        <li><a href="#juegos" class="nav-link"><i class="fa-solid fa-gamepad"></i> Juegos</a></li>
+        <li><a href="#ayuda" class="nav-link"><i class="fa-solid fa-circle-question"></i> Ayuda</a></li>
+        <li><a href="#equipo" class="nav-link"><i class="fa-solid fa-users"></i> Acerca de</a></li>
+      </ul>
+
+      <!-- ÁREA DE ACCIONES DEL USUARIO EN LA NAVBAR -->
+      <div class="nav-actions">
+        <!-- Indicador de conexión en tiempo real -->
+        <div class="status-badge">
+          <span class="pulse-dot"></span> Online
+        </div>
+        
+        <!-- Botón para abrir la ventana modal de Inicio de Sesión -->
+        <button class="btn-login-trigger" id="btn-open-auth">
+          <i class="fa-solid fa-right-to-bracket"></i> Ingresar
+        </button>
+
+        <!-- Perfil de usuario logueado (oculto por defecto hasta iniciar sesión) -->
+        <div class="user-profile-badge hidden" id="user-profile">
+          <i class="fa-solid fa-user-ninja"></i>
+          <span id="user-display-name">Jugador</span>
+          <button id="btn-logout" class="btn-logout-icon" title="Cerrar Sesión">
+            <i class="fa-solid fa-power-off"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- CONTENIDO PRINCIPAL                        -->
+  <!-- ========================================== -->
+  <main class="main-content">
+    
+    <!-- SECCIÓN HERO / BIENVENIDA -->
+    <section id="inicio" class="hero-section">
+      <div class="hero-tag"><i class="fa-solid fa-bolt"></i> PLATAFORMA DE JUEGOS WEB</div>
+      <h1 class="hero-title">Explora nuestra colección interactiva</h1>
+      <p class="hero-subtitle">Desafía tu mente con nuestros minijuegos de lógica, vocabulario y memoria visual.</p>
+      
+      <!-- Barra de estadísticas -->
+      <div class="stats-bar">
+        <div class="stat-item">
+          <span class="stat-number">4</span>
+          <span class="stat-label">Juegos Disponibles</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Gratuito</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+          <span class="stat-number">v2.0</span>
+          <span class="stat-label">Versión</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATÁLOGO DE JUEGOS -->
+    <section id="juegos" class="games-section">
+      <div class="section-header">
+        <h2>Catálogo de Juegos</h2>
+        <p>Selecciona un juego para ver su dinámica o probar la versión jugable</p>
+      </div>
+
+      <div class="cards-grid">
+        
+        <!-- CARD 1: GUESS THE WORD (JUGABLE) -->
+        <article class="game-card card-cyan">
+          <div class="card-glass"></div>
+          <div class="card-top">
+            <span class="card-badge"><i class="fa-solid fa-gamepad"></i> ¡JUGABLE!</span>
+            <span class="difficulty-tag easy">Fácil / Medio</span>
+          </div>
+          <div class="card-icon-wrapper">
+            <i class="fa-solid fa-spell-check"></i>
+          </div>
+          <h3 class="card-title">Guess the Word</h3>
+          <p class="card-description">Juego de adivinanza de palabras mediante pistas clave e intentos limitados. ¿Podrás descubrir la palabra oculta antes de agotar tus oportunidades?</p>
+          <div class="tags-list">
+            <span class="tag"><i class="fa-solid fa-font"></i> Vocabulario</span>
+            <span class="tag"><i class="fa-solid fa-clock"></i> Intentos</span>
+          </div>
+          <button class="btn-card" id="btn-play-guess">¡Jugar Ahora! <i class="fa-solid fa-play"></i></button>
+        </article>
+
+        <!-- CARD 2: AHORCADO -->
+        <article class="game-card card-purple">
+          <div class="card-glass"></div>
+          <div class="card-top">
+            <span class="card-badge"><i class="fa-solid fa-puzzle-piece"></i> Lógica</span>
+            <span class="difficulty-tag medium">Desafío</span>
+          </div>
+          <div class="card-icon-wrapper">
+            <i class="fa-solid fa-font-awesome"></i>
+          </div>
+          <h3 class="card-title">Ahorcado</h3>
+          <p class="card-description">Dinámica de descubrimiento de palabras letra por letra con estricto control de errores. Selecciona cuidadosamente tus letras para salvar al personaje.</p>
+          <div class="tags-list">
+            <span class="tag"><i class="fa-solid fa-key"></i> Descubrimiento</span>
+            <span class="tag"><i class="fa-solid fa-shield-halved"></i> Control Errores</span>
+          </div>
+          <button class="btn-card">Próximamente <i class="fa-solid fa-lock"></i></button>
+        </article>
+
+        <!-- CARD 3: TIC-TAC-TOE -->
+        <article class="game-card card-emerald">
+          <div class="card-glass"></div>
+          <div class="card-top">
+            <span class="card-badge"><i class="fa-solid fa-chess-board"></i> Estrategia</span>
+            <span class="difficulty-tag hard">2 Jugadores</span>
+          </div>
+          <div class="card-icon-wrapper">
+            <i class="fa-solid fa-xmark"></i>
+          </div>
+          <h3 class="card-title">Tic Tac Toe</h3>
+          <p class="card-description">Juego clásico de estrategia basado en reglas estrictas y validación de turnos. Forma una línea de tres símbolos iguales antes de que tu rival te bloquee.</p>
+          <div class="tags-list">
+            <span class="tag"><i class="fa-solid fa-arrows-spin"></i> Turnos</span>
+            <span class="tag"><i class="fa-solid fa-trophy"></i> Estrategia</span>
+          </div>
+          <button class="btn-card">Próximamente <i class="fa-solid fa-lock"></i></button>
+        </article>
+
+        <!-- CARD 4: MEMORAMA -->
+        <article class="game-card card-amber">
+          <div class="card-glass"></div>
+          <div class="card-top">
+            <span class="card-badge"><i class="fa-solid fa-brain"></i> Memoria</span>
+            <span class="difficulty-tag easy">Visual</span>
+          </div>
+          <div class="card-icon-wrapper">
+            <i class="fa-solid fa-clone"></i>
+          </div>
+          <h3 class="card-title">Memorama</h3>
+          <p class="card-description">Juego de asociación visual que fortalece la memoria y concentración. Encuentra todas las parejas de cartas iguales en el menor número de movimientos.</p>
+          <div class="tags-list">
+            <span class="tag"><i class="fa-solid fa-eye"></i> Asociación</span>
+            <span class="tag"><i class="fa-solid fa-bolt"></i> Agilidad</span>
+          </div>
+          <button class="btn-card">Próximamente <i class="fa-solid fa-lock"></i></button>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- SECCIÓN DE AYUDA -->
+    <section id="ayuda" class="info-section">
+      <div class="info-content">
+        <h2><i class="fa-solid fa-circle-question"></i> Centro de Ayuda</h2>
+        <p>¿Tienes dudas sobre las reglas de alguno de nuestros minijuegos o deseas saber más sobre el desarrollo del proyecto? Puedes consultar al equipo creador en la sección inferior de <strong>Acerca de</strong>.</p>
+      </div>
+    </section>
+
+    <!-- ========================================== -->
+    <!-- SECCIÓN ACERCA DE / EQUIPO CREADOR        -->
+    <!-- ========================================== -->
+    <section id="equipo" class="games-section team-section">
+      <div class="section-header">
+        <h2><i class="fa-solid fa-code"></i> Nuestro Equipo Desarrollador</h2>
+        <p>Conoce a los creadores encargados de diseñar, estructurar y dar vida a esta plataforma</p>
+      </div>
+
+      <div class="cards-grid">
+        
+        <!-- Jeiner Redondo -->
+        <article class="game-card card-cyan">
+          <div class="card-glass"></div>
+          <span class="card-badge">Desarrollador</span>
+          <div class="card-icon-wrapper"><i class="fa-solid fa-user-astronaut"></i></div>
+          <h3 class="card-title">Jeiner Redondo</h3>
+          <p class="card-description">Desarrollador Web orientado a la maquetación HTML5 y estructuración de contenido técnico.</p>
+        </article>
+
+        <!-- Sayi Hernandez -->
+        <article class="game-card card-purple">
+          <div class="card-glass"></div>
+          <span class="card-badge">Desarrolladora</span>
+          <div class="card-icon-wrapper"><i class="fa-solid fa-laptop-code"></i></div>
+          <h3 class="card-title">Sayi Hernández</h3>
+          <p class="card-description">Especialista en diseño de interfaz (UI) y optimización de experiencia de usuario (UX).</p>
+        </article>
+
+        <!-- Sharon Molina -->
+        <article class="game-card card-emerald">
+          <div class="card-glass"></div>
+          <span class="card-badge">Desarrolladora</span>
+          <div class="card-icon-wrapper"><i class="fa-solid fa-palette"></i></div>
+          <h3 class="card-title">Sharon Molina</h3>
+          <p class="card-description">Desarrolladora Frontend encargada de los estilos visuales, colores y efectos CSS3.</p>
+        </article>
+
+        <!-- Mirta Carrero -->
+        <article class="game-card card-amber">
+          <div class="card-glass"></div>
+          <span class="card-badge">Desarrolladora</span>
+          <div class="card-icon-wrapper"><i class="fa-solid fa-code"></i></div>
+          <h3 class="card-title">Mirta Carrero</h3>
+          <p class="card-description">Programadora web enfocada en la lógica, navegabilidad y respuesta adaptable del sitio.</p>
+        </article>
+
+        <!-- Camilo Rojas -->
+        <article class="game-card card-cyan">
+          <div class="card-glass"></div>
+          <span class="card-badge">Desarrollador</span>
+          <div class="card-icon-wrapper"><i class="fa-solid fa-terminal"></i></div>
+          <h3 class="card-title">Camilo Rojas</h3>
+          <p class="card-description">Desarrollador de software a cargo de pruebas, compatibilidad y control de calidad.</p>
+        </article>
+
+        <!-- Isabel Rodríguez -->
+        <article class="game-card card-purple">
+          <div class="card-glass"></div>
+          <span class="card-badge">Desarrolladora</span>
+          <div class="card-icon-wrapper"><i class="fa-solid fa-brain"></i></div>
+          <h3 class="card-title">Isabel Rodríguez</h3>
+          <p class="card-description">Desarrolladora de Lógica encargada del comportamiento del juego, control de estados y algoritmos.</p>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- MODAL DEL JUEGO GUESS THE WORD             -->
+  <!-- ========================================== -->
+  <div class="game-modal" id="game-modal">
+    <div class="modal-content">
+      <!-- Botón para cerrar la ventana del juego -->
+      <button class="close-modal" id="close-modal"><i class="fa-solid fa-xmark"></i></button>
+      
+      <div class="game-box">
+        <div class="game-header">
+          <h2><i class="fa-solid fa-lightbulb"></i> Guess The Word</h2>
+          <span class="tries-left">Intentos: <strong id="attempts-count">5</strong></span>
+        </div>
+
+        <div class="hint-box">
+          <i class="fa-solid fa-circle-info"></i> <strong>PISTA:</strong> <span id="game-hint">Cargando pista...</span>
+        </div>
+
+        <div class="word-display" id="word-display">
+          <!-- Las casillas de letras se generan dinámicamente con JS -->
+        </div>
+
+        <form id="guess-form" class="guess-form">
+          <input type="text" id="letter-input" maxlength="1" placeholder="Escribe una letra..." autocomplete="off" autofocus>
+          <button type="submit" class="btn-submit">Probar Letra</button>
+        </form>
+
+        <div id="game-message" class="game-message"></div>
+
+        <button id="btn-restart" class="btn-restart"><i class="fa-solid fa-rotate-right"></i> Siguiente Palabra</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- MODAL DE AUTENTICACIÓN (LOGIN Y REGISTRO)  -->
+  <!-- ========================================== -->
+  <div class="game-modal" id="auth-modal">
+    <div class="modal-content auth-modal-content">
+      <!-- Botón para cerrar el modal de login -->
+      <button class="close-modal" id="close-auth-modal"><i class="fa-solid fa-xmark"></i></button>
+      
+      <div class="auth-box">
+        <!-- Pestañas para conmutar entre Iniciar Sesión y Registro -->
+        <div class="auth-tabs">
+          <button class="auth-tab-btn active" id="tab-login-btn">
+            <i class="fa-solid fa-user-check"></i> Iniciar Sesión
+          </button>
+          <button class="auth-tab-btn" id="tab-register-btn">
+            <i class="fa-solid fa-user-plus"></i> Registrarse
+          </button>
+        </div>
+
+        <!-- FORMULARIO 1: INICIO DE SESIÓN -->
+        <form id="login-form" class="auth-form">
+          <div class="auth-header">
+            <h3>¡Hola de nuevo, Gamer!</h3>
+            <p>Ingresa tus datos para continuar tu sesión</p>
+          </div>
+
+          <div class="input-group">
+            <label for="login-email"><i class="fa-solid fa-envelope"></i> Correo Electrónico</label>
+            <input type="email" id="login-email" placeholder="tuusuario@correo.com" required>
+          </div>
+
+          <div class="input-group">
+            <label for="login-password"><i class="fa-solid fa-key"></i> Contraseña</label>
+            <input type="password" id="login-password" placeholder="••••••••" required>
+          </div>
+
+          <!-- Mensajes de estado -->
+          <div id="login-message" class="game-message"></div>
+
+          <button type="submit" class="btn-card btn-auth-submit">
+            Entrar al juego <i class="fa-solid fa-arrow-right-to-bracket"></i>
+          </button>
+        </form>
+
+        <!-- FORMULARIO 2: REGISTRO (Oculto inicialmente) -->
+        <form id="register-form" class="auth-form hidden">
+          <div class="auth-header">
+            <h3>Crea tu cuenta Arcade</h3>
+            <p>Únete a la comunidad de ArcadeHub gratis</p>
+          </div>
+
+          <div class="input-group">
+            <label for="reg-username"><i class="fa-solid fa-user"></i> Nombre de Usuario / Nickname</label>
+            <input type="text" id="reg-username" placeholder="Ej: ProGamer2026" required>
+          </div>
+
+          <div class="input-group">
+            <label for="reg-email"><i class="fa-solid fa-envelope"></i> Correo Electrónico</label>
+            <input type="email" id="reg-email" placeholder="tuusuario@correo.com" required>
+          </div>
+
+          <div class="input-group">
+            <label for="reg-password"><i class="fa-solid fa-lock"></i> Crear Contraseña</label>
+            <input type="password" id="reg-password" placeholder="Mínimo 6 caracteres" minlength="6" required>
+          </div>
+
+          <!-- Mensajes de estado -->
+          <div id="register-message" class="game-message"></div>
+
+          <button type="submit" class="btn-card btn-auth-submit">
+            Crear Cuenta <i class="fa-solid fa-user-check"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- PIE DE PÁGINA GLOBAL -->
+  <footer class="footer">
+    <p>&copy; 2026 <strong>ArcadeHub</strong>. Diseñado por Jeiner, Sayi, Sharon, Mirta, Camilo e Isabel.</p>
+  </footer>
+
+  <!-- SCRIPT CON LA LÓGICA DE JUEGOS Y SESIONES -->
+  <script src="script.js"></script>
+</body>
+</html>
