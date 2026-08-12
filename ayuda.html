@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centro de Ayuda - DevGames</title>
+  
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="bg-glow spot-1"></div>
+  <div class="bg-glow spot-2"></div>
+
+  <header class="navbar-wrapper">
+    <nav class="navbar">
+      <div class="logo">
+        <div class="logo-icon"><i class="fa-solid fa-code"></i></div>
+        <span class="logo-text">DEV<span class="highlight">GAMES</span></span>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="index.html#inicio" class="nav-link"><i class="fa-solid fa-house"></i> Inicio</a></li>
+        <li><a href="index.html#juegos" class="nav-link"><i class="fa-solid fa-gamepad"></i> Juegos</a></li>
+        <li><a href="ayuda.html" class="nav-link active"><i class="fa-solid fa-circle-question"></i> Ayuda</a></li>
+        <li><a href="acerca.html" class="nav-link"><i class="fa-solid fa-users"></i> Acerca de</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <div class="status-badge"><span class="pulse-dot"></span> En línea</div>
+      </div>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <section class="games-section" style="padding-top: 100px;">
+      <div class="section-header">
+        <h2><i class="fa-solid fa-circle-question"></i> Instrucciones de los Juegos de Programación</h2>
+        <p>Aprende de qué trata cada juego técnico y cómo jugarlo paso a paso</p>
+      </div>
+
+      <div class="cards-grid">
+        
+        <article class="game-card card-cyan">
+          <div class="card-glass"></div>
+          <span class="card-badge"><i class="fa-solid fa-code"></i> Tema: Conceptos Web</span>
+          <h3 class="card-title">Guess the Word</h3>
+          <p class="card-description">
+            <strong>¿De qué trata?</strong> Juego de adivinanza sobre vocabulario de desarrollo web (HTML, CSS, JavaScript).<br><br>
+            <strong>¿Cómo jugar?</strong><br>
+            1. Lee la pista técnica proporcionada.<br>
+            2. Ingresa una letra en el campo de texto y presiona "Probar".<br>
+            3. Si aciertas, la letra completará el término técnico.<br>
+            4. Tienes un máximo de 5 intentos.
+          </p>
+        </article>
+
+        <article class="game-card card-purple">
+          <div class="card-glass"></div>
+          <span class="card-badge"><i class="fa-solid fa-laptop-code"></i> Tema: Sintaxis y Lenguajes</span>
+          <h3 class="card-title">Ahorcado</h3>
+          <p class="card-description">
+            <strong>¿De qué trata?</strong> Juego de deducción de nombres de lenguajes de programación y librerías.<br><br>
+            <strong>¿Cómo jugar?</strong><br>
+            1. Propon letras una a una.<br>
+            2. Cada fallo añade un error a tu contador.<br>
+            3. Descubre la palabra completa antes de llegar a 6 errores acumulados.
+          </p>
+        </article>
+
+        <article class="game-card card-emerald">
+          <div class="card-glass"></div>
+          <span class="card-badge"><i class="fa-solid fa-bug"></i> Tema: Frontend vs Backend</span>
+          <h3 class="card-title">Tic Tac Toe</h3>
+          <p class="card-description">
+            <strong>¿De qué trata?</strong> Duelo táctico en vivo entre dos desarrolladores.<br><br>
+            <strong>¿Cómo jugar?</strong><br>
+            1. El Jugador 1 representa la ficha <strong>X</strong> y el Jugador 2 la ficha <strong>O</strong>.<br>
+            2. Se turnan para hacer clic en las casillas.<br>
+            3. Alinea tres símbolos iguales horizontal, vertical o diagonalmente.
+          </p>
+        </article>
+
+        <article class="game-card card-amber">
+          <div class="card-glass"></div>
+          <span class="card-badge"><i class="fa-solid fa-cubes"></i> Tema: Tecnologías y Frameworks</span>
+          <h3 class="card-title">Memorama</h3>
+          <p class="card-description">
+            <strong>¿De qué trata?</strong> Desafío de memoria visual centrado en herramientas de código.<br><br>
+            <strong>¿Cómo jugar?</strong><br>
+            1. Haz clic sobre las cartas para darles la vuelta.<br>
+            2. Encuentra las parejas de iconos iguales.<br>
+            3. Completa todo el tablero con el menor número de intentos.
+          </p>
+        </article>
+
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 <strong>DevGames</strong>. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>
